@@ -10,7 +10,9 @@ Download: [CurseForge](https://www.curseforge.com/minecraft/search?search=nekoro
 
 | Minecraft | Loaders |
 |---|---|
-| 1.21.1 | NeoForge |
+| 1.21.1 | NeoForge, Fabric |
+
+Fabric needs Fabric API.
 
 ## Config
 
@@ -20,12 +22,14 @@ The default files are in [config-default](config-default/Nekoro/QualityOfLife), 
 
 ## Building
 
+The shared code is in `source/common` (`java-core`, plus `java-neoforge` and `java-fabric` for what differs between the loaders), and each loader has a small Gradle project next to it.
+
 ```
-cd source/neoforge-1.21.1
-gradlew build
+cd source
+.uild-all.ps1
 ```
 
-The jar is written to `build/libs`. Java 21 is needed.
+The jars are copied to `Gotowe/<version>`. Java 21 is needed.
 
 ## License
 

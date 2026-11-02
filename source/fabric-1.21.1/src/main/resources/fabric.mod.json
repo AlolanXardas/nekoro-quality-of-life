@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "nekoro_qol",
+  "version": "${version}",
+  "name": "Nekoro Quality of Life",
+  "description": "Small quality of life changes in config files: switch single enchantments on and off (Fortune and Silk Touch on one tool), hide toasts or move them to chat, unlock all recipes, hide the recipe book, auto walk, double doors, faster ladders, no creative drift, instant XP pickup, inventory sorting and transfer buttons, mouse shortcuts in inventories, refilling the item in hand, a hotbar swap key, cleaner tooltips, a Brightness slider up to fullbright, a short F3 screen, borderless fullscreen and a searchable Key Binds screen.",
+  "authors": [
+    "Alolan Xardas"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.xardas.nekoroqol.fabric.NekoroQolFabric"
+    ],
+    "client": [
+      "dev.xardas.nekoroqol.fabric.NekoroQolFabricClient"
+    ]
+  },
+  "mixins": [
+    "nekoro_qol.mixins.json",
+    "nekoro_qol.fabric.mixins.json"
+  ],
+  "accessWidener": "nekoro_qol.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.xardas.nekoroqol.fabricmixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FabricLivingEntityMixin"
+  ],
+  "client": [
+    "client.ContainerScreenDragMixin",
+    "client.DebugScreenOverlayMixin",
+    "client.MinecraftScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

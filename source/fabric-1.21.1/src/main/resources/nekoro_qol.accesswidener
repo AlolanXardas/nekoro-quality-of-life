@@ -1,0 +1,3 @@
+accessWidener v2 named
+# the Brightness slider needs its own value range (vanilla only allows 0..1)
+accessible class net/minecraft/client/OptionInstance$SliderableValueSet

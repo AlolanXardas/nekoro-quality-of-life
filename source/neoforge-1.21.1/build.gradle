@@ -11,6 +11,11 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+sourceSets.main {
+    java.srcDirs '../common/java-core', '../common/java-neoforge'
+    resources.srcDir '../common/resources'
+}
+
 repositories {
     mavenCentral()
 }
