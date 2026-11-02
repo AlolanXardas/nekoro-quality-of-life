@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.xardas.nekoroqol.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExperienceOrbMixin",
+    "LivingEntityMixin"
+  ],
+  "client": [
+    "client.ClientRecipeBookMixin",
+    "client.EntityTurnMixin",
+    "client.ImageButtonAccessor",
+    "client.KeyBindsScreenAccessor",
+    "client.OptionsMixin",
+    "client.ToastComponentMixin",
+    "client.WindowMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

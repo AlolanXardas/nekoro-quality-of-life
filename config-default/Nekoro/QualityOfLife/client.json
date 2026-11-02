@@ -1,0 +1,68 @@
+// Nekoro Quality of Life: changes only for your own game. Restart the game after editing.
+{
+  "toasts": {
+    // the tutorial hints at the start (how to move, punch trees, open the inventory...)
+    "hide_tutorials": false,
+    // "Advancement Made!" popups (advancements still show in chat)
+    "hide_advancements": false,
+    // "New Recipes Unlocked!" popups
+    "hide_recipes": false,
+    // other popups by their Java class, e.g. "com.cobblemon.mod.common.client.gui.toast.CobblemonToast"
+    "hide_classes": [],
+    // show the text of popups from "hide_classes" in chat instead (each text at most once every 5 minutes)
+    "send_hidden_to_chat": true
+  },
+  // hides the green recipe book button; recipes are in JEI or similar mods.
+  // Also skips building the recipe book at login, which saves time in big modpacks.
+  "hide_recipe_book": false,
+  // stop at once when you let go of the movement keys while flying in creative
+  "no_creative_drift": true,
+  // climb down ladders and vines faster while looking down (sneak to stop as usual)
+  "faster_ladders": true,
+  // blocks per tick when climbing down faster, vanilla is 0.15
+  "ladder_speed": 0.3,
+  // the highest value of the Brightness slider in Video Settings, in percent (vanilla: 100).
+  // At 1200 everything is lit as if by full light, also in caves at night.
+  "brightness_max": 1200,
+  // F3 shows only FPS, coordinates, direction, biome, day and time, and light. A key in Controls
+  // ("Nekoro Quality of Life") switches to the full F3 screen, coloured so the useful lines stand out.
+  "short_debug_screen": true,
+  // fullscreen as a borderless window over the whole monitor: alt-tab and a second monitor work
+  // without the game minimizing or the screen going black
+  "borderless_fullscreen": true,
+  // Key Binds screen with a search box (by name, or press a key to see only what is on that key),
+  // a filter (bound, unbound, conflicts, changed) and a category switch
+  "better_controls": true,
+  "inventory": {
+    // a sort button above containers and your inventory. Each click sorts in the next order (right click: the previous one):
+    // by category (all pickaxes together, best first, then axes...), by name, or by mod.
+    // The hotbar is never sorted.
+    "sort_button": true,
+    // with a container open, buttons above it and above your inventory: move matching items here (only kinds
+    // that side already has) and move everything here. Items never come from or go into the hotbar.
+    "transfer_buttons": true,
+    // screens without buttons, by their Java class, e.g. "net.minecraft.client.gui.screens.inventory.ContainerScreen"
+    "no_buttons_in": [],
+    // the mouse wheel over an item moves one at a time: down into the other inventory, up back into this slot
+    "scroll_moves_items": true,
+    // hold Shift and the left button and move over items to move all of them to the other inventory
+    "shift_drag_moves": true,
+    // Ctrl + click moves every stack of that item to the other inventory
+    "ctrl_click_moves_same": true,
+    // Space + click moves everything from that inventory (or from that part: the hotbar or the three rows above it)
+    "space_click_moves_all": true
+  },
+  "tooltips": {
+    // enchantments listed under an "Enchantments:" line, coloured: curses, normal, and at max level or higher.
+    // Colours: black, dark_blue, dark_green, dark_aqua, dark_red, dark_purple, gold, gray, dark_gray, blue,
+    // green, aqua, red, light_purple, yellow, white, or a hex colour like "#FF8800"
+    "enchantments": true,
+    "curse_color": "red",
+    "enchantment_color": "green",
+    "max_level_color": "gold",
+    // "Durability: 120 / 250" on every item that can break, coloured from green to red
+    "durability": true,
+    // dyed items show their colour instead of just "Dyed"
+    "dye_color": true
+  }
+}

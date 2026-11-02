@@ -1,0 +1,28 @@
+// Nekoro Quality of Life: changes to the game itself. On a server they are set by the server's file.
+// /reload applies changes.
+{
+  // switch single enchantments on an item off and on again (keys in Controls, "Nekoro Quality of Life": a menu for the
+  // item in your hand, and quick keys for Silk Touch, Frost Walker, Knockback and others that look in both
+  // hands and the armor).
+  // A switched-off enchantment does nothing until it is switched on again, so Fortune and Silk Touch
+  // can be on one tool. Curses can never be switched off.
+  "toggle_enchantments": true,
+  // every player knows every recipe (the recipe book shows all of them, no "new recipe" toasts needed)
+  "unlock_all_recipes": false,
+  // opening one door of a double door opens the other one too (sneak to open only one)
+  "double_doors": true,
+  // XP orbs are picked up at once instead of one by one, with Mending working as usual
+  "instant_xp": true,
+  // XP orbs lying close together join into one orb with all their experience (fewer entities, less lag)
+  "merge_xp_orbs": true,
+  // when the item in your hand is used up (a tool breaks, the last block is placed, the last food is
+  // eaten, the last Poke Ball is thrown), the same item from your inventory takes its place
+  "refill_hand": true,
+  // the sort and transfer buttons in inventories and containers (each player can still hide them in client.json)
+  "inventory_buttons": true,
+  // the order of item kinds when sorting by category. Remove a kind and its items are sorted with the
+  // next kind they fit, or at the end. Kinds: weapons, tools, armor, equipment (shields, elytra, totems),
+  // pokemon (Cobblemon items, empty without Cobblemon), food (also potions), materials (ingots, gems,
+  // raw ores, dusts, nuggets, rods), blocks. Everything else comes last.
+  "sort_categories": ["weapons", "tools", "armor", "equipment", "pokemon", "food", "materials", "blocks"]
+}
