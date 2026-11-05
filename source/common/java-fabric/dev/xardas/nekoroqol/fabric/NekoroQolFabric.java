@@ -30,7 +30,7 @@ public final class NekoroQolFabric implements ModInitializer {
     public void onInitialize() {
         QolConfig.load();
         DataComponentType<ItemEnchantments> disabled = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
-                ResourceLocation.fromNamespaceAndPath(EnchantToggle.COMPONENT_NAMESPACE, EnchantToggle.COMPONENT_NAME), EnchantToggle.createComponent());
+                ResourceLocation.fromNamespaceAndPath(NekoroQol.MOD_ID, EnchantToggle.COMPONENT_NAME), EnchantToggle.createComponent());
         EnchantToggle.DISABLED = () -> disabled;
 
         PayloadTypeRegistry.playC2S().register(ToggleEnchantPayload.TYPE, ToggleEnchantPayload.STREAM_CODEC);

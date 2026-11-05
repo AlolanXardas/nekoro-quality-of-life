@@ -27,8 +27,6 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
  */
 public final class EnchantToggle {
     public static final String COMPONENT_NAME = "disabled_enchantments";
-    /** Saved inside items, so it keeps the first mod id: under a new name items in existing worlds would not load. */
-    public static final String COMPONENT_NAMESPACE = "nekoro_qol";
 
     /** Set by the loader when it registers the component. */
     public static Supplier<DataComponentType<ItemEnchantments>> DISABLED;

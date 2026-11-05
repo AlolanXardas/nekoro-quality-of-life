@@ -35,7 +35,7 @@ import dev.xardas.nekoroqol.mixin.client.ImageButtonAccessor;
 public final class QolClient {
     private static final String CATEGORY = "key.categories.nekoroqualityoflife";
     // no default keys, so nothing happens by accident; players pick a key in Controls when they want a feature
-    static final KeyMapping TOGGLE_MENU = new KeyMapping("key.nekoro_qol.toggle_enchantments",
+    static final KeyMapping TOGGLE_MENU = new KeyMapping("key.nekoroqualityoflife.toggle_enchantments",
             InputConstants.UNKNOWN.getValue(), CATEGORY);
     /** One key per enchantment that is worth switching quickly; the item is found in the hands or the armor. */
     static final Map<KeyMapping, ResourceKey<Enchantment>> QUICK_TOGGLES = new LinkedHashMap<>();
@@ -44,14 +44,14 @@ public final class QolClient {
         for (ResourceKey<Enchantment> key : List.of(Enchantments.SILK_TOUCH, Enchantments.FROST_WALKER,
                 Enchantments.KNOCKBACK, Enchantments.PUNCH, Enchantments.FIRE_ASPECT, Enchantments.FLAME,
                 Enchantments.SWEEPING_EDGE, Enchantments.RIPTIDE, Enchantments.SOUL_SPEED, Enchantments.THORNS)) {
-            QUICK_TOGGLES.put(new KeyMapping("key.nekoro_qol.toggle_" + key.location().getPath(),
+            QUICK_TOGGLES.put(new KeyMapping("key.nekoroqualityoflife.toggle_" + key.location().getPath(),
                     InputConstants.UNKNOWN.getValue(), CATEGORY), key);
         }
     }
-    static final KeyMapping AUTO_WALK = new KeyMapping("key.nekoro_qol.auto_walk", InputConstants.UNKNOWN.getValue(), CATEGORY);
-    static final KeyMapping LOCK_ROTATION = new KeyMapping("key.nekoro_qol.lock_rotation", InputConstants.UNKNOWN.getValue(), CATEGORY);
-    static final KeyMapping SWAP_HOTBAR = new KeyMapping("key.nekoro_qol.swap_hotbar", InputConstants.UNKNOWN.getValue(), CATEGORY);
-    static final KeyMapping FULL_DEBUG = new KeyMapping("key.nekoro_qol.full_debug", InputConstants.UNKNOWN.getValue(), CATEGORY);
+    static final KeyMapping AUTO_WALK = new KeyMapping("key.nekoroqualityoflife.auto_walk", InputConstants.UNKNOWN.getValue(), CATEGORY);
+    static final KeyMapping LOCK_ROTATION = new KeyMapping("key.nekoroqualityoflife.lock_rotation", InputConstants.UNKNOWN.getValue(), CATEGORY);
+    static final KeyMapping SWAP_HOTBAR = new KeyMapping("key.nekoroqualityoflife.swap_hotbar", InputConstants.UNKNOWN.getValue(), CATEGORY);
+    static final KeyMapping FULL_DEBUG = new KeyMapping("key.nekoroqualityoflife.full_debug", InputConstants.UNKNOWN.getValue(), CATEGORY);
 
     /** While true, the mouse no longer turns the player left or right (looking up and down still works). */
     public static boolean rotationLocked;

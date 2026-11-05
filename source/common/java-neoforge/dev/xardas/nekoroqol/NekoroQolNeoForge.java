@@ -26,7 +26,7 @@ import dev.xardas.nekoroqol.neoforge.NeoForgeClient;
 @Mod(NekoroQol.MOD_ID)
 public final class NekoroQolNeoForge {
     private static final DeferredRegister.DataComponents COMPONENTS =
-            DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, EnchantToggle.COMPONENT_NAMESPACE);
+            DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, NekoroQol.MOD_ID);
 
     static {
         EnchantToggle.DISABLED = COMPONENTS.register(EnchantToggle.COMPONENT_NAME, EnchantToggle::createComponent);
