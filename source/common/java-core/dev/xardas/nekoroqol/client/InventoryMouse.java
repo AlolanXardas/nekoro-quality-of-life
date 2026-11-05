@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import org.lwjgl.glfw.GLFW;
 
 import dev.xardas.nekoroqol.QolConfig;
+import dev.xardas.nekoroqol.mixin.client.AbstractContainerScreenAccessor;
 import dev.xardas.nekoroqol.inventory.SlotGroups;
 
 /**
@@ -29,12 +30,19 @@ public final class InventoryMouse {
     private InventoryMouse() { }
 
     private static AbstractContainerScreen<?> screen(Screen screen) {
-        if (!(screen instanceof AbstractContainerScreen<?> s) || screen instanceof CreativeModeInventoryScreen) return null;
+        if (!(screen instanceof AbstractContainerScreen<?> s)) return null;
+        // the creative inventory only on its inventory tab (the item tabs are not real slots)
+        if (screen instanceof CreativeModeInventoryScreen creative && !creative.isInventoryOpen()) return null;
         return Minecraft.getInstance().player == null || Minecraft.getInstance().gameMode == null ? null : s;
     }
 
     private static void click(AbstractContainerScreen<?> screen, Slot slot, int button, ClickType type) {
         Minecraft mc = Minecraft.getInstance();
+        if (screen instanceof CreativeModeInventoryScreen) {
+            // only the player's own slots: a shift-click on the creative bin would empty the whole inventory
+            if (SlotGroups.isPlayer(slot)) ((AbstractContainerScreenAccessor) screen).nekoroQol$slotClicked(slot, slot.index, button, type);
+            return;
+        }
         mc.gameMode.handleInventoryMouseClick(screen.getMenu().containerId, slot.index, button, type, mc.player);
     }
 
@@ -58,7 +66,7 @@ public final class InventoryMouse {
         Slot hovered = slotAt(screen, mouseX, mouseY);
         if (hovered == null || !hovered.hasItem() || !menu.getCarried().isEmpty() || SlotGroups.isResult(hovered)) return false;
         ItemStack stack = hovered.getItem();
-        List<Slot> others = otherSide(menu, hovered);
+        List<Slot> others = otherSide(screen, hovered);
         if (scrollY < 0) {
             Slot target = target(others, stack);
             if (target == null || !hovered.mayPickup(Minecraft.getInstance().player)) return false;
@@ -88,14 +96,17 @@ public final class InventoryMouse {
      * Where items from this slot go: a container goes to the player and the player to the container. Without
      * a container (the player's own inventory) the hotbar and the rows above it swap roles.
      */
-    private static List<Slot> otherSide(AbstractContainerMenu menu, Slot slot) {
+    private static List<Slot> otherSide(AbstractContainerScreen<?> screen, Slot slot) {
+        AbstractContainerMenu menu = screen.getMenu();
         List<Slot> out = new ArrayList<>();
         if (!SlotGroups.isPlayer(slot)) {
             for (Slot s : menu.slots) if (SlotGroups.part(s) == SlotGroups.MAIN) out.add(s);
             for (Slot s : menu.slots) if (SlotGroups.part(s) == SlotGroups.HOTBAR) out.add(s);
             return out;
         }
+        // the creative inventory has no container, only the player's slots and the bin
         for (Slot s : menu.slots) {
+            if (screen instanceof CreativeModeInventoryScreen) break;
             if (!SlotGroups.isPlayer(s) && !SlotGroups.isResult(s) && !(s.container instanceof CraftingContainer)) out.add(s);
         }
         if (!out.isEmpty()) return out;

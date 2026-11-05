@@ -3,7 +3,7 @@ loaderVersion = "[4,)"
 license = "MIT"
 
 [[mods]]
-    modId = "nekoro_qol"
+    modId = "nekoroqualityoflife"
     version = "${version}"
     displayName = "Nekoro Quality of Life"
     authors = "Alolan Xardas"
@@ -11,14 +11,14 @@ license = "MIT"
 Small quality of life changes in config files: switch single enchantments on and off (Fortune and Silk Touch on one tool), hide toasts or move them to chat, unlock all recipes, hide the recipe book, auto walk, double doors, faster ladders, no creative drift, instant XP pickup, inventory sorting and transfer buttons, mouse shortcuts in inventories, refilling the item in hand, a hotbar swap key, cleaner tooltips, a Brightness slider up to fullbright, a short F3 screen, borderless fullscreen and a searchable Key Binds screen.
 '''
 
-[[dependencies.nekoro_qol]]
+[[dependencies.nekoroqualityoflife]]
     modId = "neoforge"
     type = "required"
     versionRange = "[21.1,)"
     ordering = "NONE"
     side = "BOTH"
 
-[[dependencies.nekoro_qol]]
+[[dependencies.nekoroqualityoflife]]
     modId = "minecraft"
     type = "required"
     versionRange = "[1.21.1,1.22)"
@@ -26,7 +26,7 @@ Small quality of life changes in config files: switch single enchantments on and
     side = "BOTH"
 
 [[mixins]]
-    config = "nekoro_qol.mixins.json"
+    config = "nekoroqualityoflife.mixins.json"
 
 [[accessTransformers]]
     file = "META-INF/accesstransformer.cfg"

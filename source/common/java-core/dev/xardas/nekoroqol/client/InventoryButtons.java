@@ -11,6 +11,7 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.client.gui.screens.Screen;
@@ -39,14 +40,15 @@ public final class InventoryButtons {
         if (!(opened instanceof AbstractContainerScreen<?> screen) || screen instanceof CreativeModeInventoryScreen) return out;
         QolConfig cfg = QolConfig.get();
         if (!cfg.sortButton && !cfg.transferButtons) return out;
-        if (cfg.noButtonsIn.contains(screen.getClass().getName())) return out;
+        if (listed(cfg.noButtonsIn, screen)) return out;
+        boolean sort = cfg.sortButton && !listed(cfg.noSortIn, screen);
         if (!ClientPlatform.INSTANCE.serverHas(InventoryPayload.TYPE)) return out;
 
         // each area gets: sort, then "matching items here" and "everything here" (items move into that area)
         List<List<Slot>> storages = SlotGroups.storages(screen.getMenu());
         for (List<Slot> storage : storages) {
             int x = right(storage);
-            if (cfg.sortButton) out.add(new Button(screen, storage.get(0), Kind.SORT, x -= SIZE, top(storage)));
+            if (sort) out.add(new Button(screen, storage.get(0), Kind.SORT, x -= SIZE, top(storage)));
             if (cfg.transferButtons) {
                 out.add(new Button(screen, storage.get(0), Kind.MATCHING_TO_STORAGE, x -= SIZE + 1, top(storage)));
                 out.add(new Button(screen, storage.get(0), Kind.ALL_TO_STORAGE, x - SIZE - 1, top(storage)));
@@ -55,7 +57,7 @@ public final class InventoryButtons {
         List<Slot> main = SlotGroups.playerMain(screen.getMenu());
         if (main.size() != 27) return out;
         int x = right(main);
-        if (cfg.sortButton) out.add(new Button(screen, main.get(0), Kind.SORT, x -= SIZE, top(main)));
+        if (sort) out.add(new Button(screen, main.get(0), Kind.SORT, x -= SIZE, top(main)));
         if (cfg.transferButtons && !storages.isEmpty()) {
             // the transfer works with the first container of the screen (almost every screen has only one)
             Slot storage = storages.get(0).get(0);
@@ -63,6 +65,23 @@ public final class InventoryButtons {
             out.add(new Button(screen, storage, Kind.ALL_TO_PLAYER, x - SIZE - 1, top(main)));
         }
         return out;
+    }
+
+    /** The screen is in the list: by its Java class, or by the mod of its window or of its class's package. */
+    private static boolean listed(List<String> entries, AbstractContainerScreen<?> screen) {
+        if (entries.isEmpty()) return false;
+        String type = screen.getClass().getName();
+        String mod = null;
+        try {
+            ResourceLocation key = BuiltInRegistries.MENU.getKey(screen.getMenu().getType());
+            if (key != null) mod = key.getNamespace();
+        } catch (UnsupportedOperationException e) {
+            // the player's own inventory has no window type
+        }
+        for (String entry : entries) {
+            if (entry.equals(type) || entry.equals(mod) || type.contains("." + entry + ".")) return true;
+        }
+        return false;
     }
 
     static int left(AbstractContainerScreen<?> screen) {
@@ -125,10 +144,10 @@ public final class InventoryButtons {
 
         private void updateTooltip() {
             Component text = switch (kind) {
-                case SORT -> Component.translatable("button.nekoro_qol.sort",
-                        Component.translatable("button.nekoro_qol.sort." + ClientState.sortMode().id()));
-                case MATCHING_TO_STORAGE, MATCHING_TO_PLAYER -> Component.translatable("button.nekoro_qol.matching");
-                case ALL_TO_STORAGE, ALL_TO_PLAYER -> Component.translatable("button.nekoro_qol.all");
+                case SORT -> Component.translatable("button.nekoroqualityoflife.sort",
+                        Component.translatable("button.nekoroqualityoflife.sort." + ClientState.sortMode().id()));
+                case MATCHING_TO_STORAGE, MATCHING_TO_PLAYER -> Component.translatable("button.nekoroqualityoflife.matching");
+                case ALL_TO_STORAGE, ALL_TO_PLAYER -> Component.translatable("button.nekoroqualityoflife.all");
             };
             setTooltip(Tooltip.create(text));
         }

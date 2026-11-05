@@ -27,7 +27,7 @@ public final class Brightness {
             if (percent == 50) return Options.genericValueLabel(caption, Component.translatable("options.gamma.default"));
             if (percent == 100) return Options.genericValueLabel(caption, Component.translatable("options.gamma.max"));
             if (percent >= maxPercent && maxPercent > 100) {
-                return Options.genericValueLabel(caption, Component.translatable("options.nekoro_qol.gamma.full"));
+                return Options.genericValueLabel(caption, Component.translatable("options.nekoroqualityoflife.gamma.full"));
             }
             return Options.genericValueLabel(caption, percent);
         }, new Range(max), 0.5, value -> { });

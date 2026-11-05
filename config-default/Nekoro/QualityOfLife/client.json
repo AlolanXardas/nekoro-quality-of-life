@@ -41,8 +41,11 @@
     // with a container open, buttons above it and above your inventory: move matching items here (only kinds
     // that side already has) and move everything here. Items never come from or go into the hotbar.
     "transfer_buttons": true,
-    // screens without buttons, by their Java class, e.g. "net.minecraft.client.gui.screens.inventory.ContainerScreen"
-    "no_buttons_in": [],
+    // screens without these buttons: a mod id, or a screen's Java class
+    // (e.g. "net.minecraft.client.gui.screens.inventory.ContainerScreen")
+    "no_buttons_in": [ "projecte" ],
+    // screens without the sort button (mods that sort their own storage)
+    "no_sort_in": [ "sophisticatedbackpacks", "sophisticatedstorage" ],
     // the mouse wheel over an item moves one at a time: down into the other inventory, up back into this slot
     "scroll_moves_items": true,
     // hold Shift and the left button and move over items to move all of them to the other inventory

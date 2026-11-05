@@ -60,8 +60,8 @@ public final class ControlsScreen extends KeyBindsScreen {
         column.addChild(new StringWidget(title, font));
 
         LinearLayout row = LinearLayout.horizontal().spacing(4);
-        search = new EditBox(font, 0, 0, 120, 20, Component.translatable("controls.nekoro_qol.search"));
-        search.setHint(Component.translatable("controls.nekoro_qol.search"));
+        search = new EditBox(font, 0, 0, 120, 20, Component.translatable("controls.nekoroqualityoflife.search"));
+        search.setHint(Component.translatable("controls.nekoroqualityoflife.search"));
         search.setResponder(text -> refilter());
         row.addChild(search);
         modeButton = row.addChild(Button.builder(Component.empty(), b -> {
@@ -70,7 +70,7 @@ public final class ControlsScreen extends KeyBindsScreen {
             filterKey = null;
             updateButtons();
             refilter();
-        }).width(70).tooltip(Tooltip.create(Component.translatable("controls.nekoro_qol.mode.tooltip"))).build());
+        }).width(70).tooltip(Tooltip.create(Component.translatable("controls.nekoroqualityoflife.mode.tooltip"))).build());
         showButton = row.addChild(Button.builder(Component.empty(), b -> {
             show = Show.values()[(show.ordinal() + 1) % Show.values().length];
             updateButtons();
@@ -118,12 +118,12 @@ public final class ControlsScreen extends KeyBindsScreen {
     private void updateButtons() {
         search.visible = !byKey;
         keyButton.visible = byKey;
-        keyButton.setMessage(capturing ? Component.translatable("controls.nekoro_qol.waiting")
-                : filterKey == null ? Component.translatable("controls.nekoro_qol.press_key")
-                : Component.translatable("controls.nekoro_qol.key", filterKey.getDisplayName()));
-        modeButton.setMessage(Component.translatable(byKey ? "controls.nekoro_qol.by_key" : "controls.nekoro_qol.by_name"));
-        showButton.setMessage(Component.translatable("controls.nekoro_qol.show." + show.name().toLowerCase(Locale.ROOT)));
-        categoryButton.setMessage(category == 0 ? Component.translatable("controls.nekoro_qol.all_categories")
+        keyButton.setMessage(capturing ? Component.translatable("controls.nekoroqualityoflife.waiting")
+                : filterKey == null ? Component.translatable("controls.nekoroqualityoflife.press_key")
+                : Component.translatable("controls.nekoroqualityoflife.key", filterKey.getDisplayName()));
+        modeButton.setMessage(Component.translatable(byKey ? "controls.nekoroqualityoflife.by_key" : "controls.nekoroqualityoflife.by_name"));
+        showButton.setMessage(Component.translatable("controls.nekoroqualityoflife.show." + show.name().toLowerCase(Locale.ROOT)));
+        categoryButton.setMessage(category == 0 ? Component.translatable("controls.nekoroqualityoflife.all_categories")
                 : Component.translatable(categories.get(category - 1)));
     }
 
@@ -189,7 +189,7 @@ public final class ControlsScreen extends KeyBindsScreen {
         ScrollButton(int width, java.util.function.IntConsumer step) {
             super(0, 0, width, 20, Component.empty(), b -> step.accept(1), DEFAULT_NARRATION);
             this.step = step;
-            setTooltip(Tooltip.create(Component.translatable("controls.nekoro_qol.category.tooltip")));
+            setTooltip(Tooltip.create(Component.translatable("controls.nekoroqualityoflife.category.tooltip")));
         }
 
         @Override

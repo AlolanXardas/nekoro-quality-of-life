@@ -30,7 +30,7 @@ public final class ToggleEnchantScreen extends Screen {
     private String shown = "";
 
     public ToggleEnchantScreen() {
-        super(Component.translatable("screen.nekoro_qol.toggle_enchantments"));
+        super(Component.translatable("screen.nekoroqualityoflife.toggle_enchantments"));
     }
 
     /** Active and switched-off enchantments of the item, without curses (those cannot be switched). */
@@ -67,7 +67,7 @@ public final class ToggleEnchantScreen extends Screen {
                     .bounds(x, y, BUTTON_WIDTH, BUTTON_HEIGHT).build());
             y += BUTTON_HEIGHT + GAP;
         }
-        addRenderableWidget(Button.builder(Component.translatable("screen.nekoro_qol.done"), b -> onClose())
+        addRenderableWidget(Button.builder(Component.translatable("screen.nekoroqualityoflife.done"), b -> onClose())
                 .bounds(x, y + GAP, BUTTON_WIDTH, BUTTON_HEIGHT).build());
     }
 
@@ -83,7 +83,7 @@ public final class ToggleEnchantScreen extends Screen {
         ItemStack stack = held();
         if (!stack.isEmpty()) graphics.drawCenteredString(font, stack.getHoverName(), width / 2, 22, 0xAAAAAA);
         if (toggleable(stack).isEmpty()) {
-            graphics.drawCenteredString(font, Component.translatable("screen.nekoro_qol.no_enchantments"),
+            graphics.drawCenteredString(font, Component.translatable("screen.nekoroqualityoflife.no_enchantments"),
                     width / 2, height / 2 - 20, 0xAAAAAA);
         }
     }

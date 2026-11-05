@@ -33,7 +33,7 @@ import dev.xardas.nekoroqol.mixin.client.ImageButtonAccessor;
 
 /** Everything that only exists in the player's game: keys, the enchantment menu, tooltips, movement, screens. */
 public final class QolClient {
-    private static final String CATEGORY = "key.categories.nekoro_qol";
+    private static final String CATEGORY = "key.categories.nekoroqualityoflife";
     // no default keys, so nothing happens by accident; players pick a key in Controls when they want a feature
     static final KeyMapping TOGGLE_MENU = new KeyMapping("key.nekoro_qol.toggle_enchantments",
             InputConstants.UNKNOWN.getValue(), CATEGORY);
@@ -109,8 +109,8 @@ public final class QolClient {
             rotationLocked = !rotationLocked;
             // snap to the nearest of the 8 directions, so walking forward follows an axis or an exact diagonal
             if (rotationLocked) player.setYRot(Math.round(player.getYRot() / 45F) * 45F);
-            player.displayClientMessage(Component.translatable(rotationLocked ? "message.nekoro_qol.rotation_locked"
-                    : "message.nekoro_qol.rotation_unlocked"), true);
+            player.displayClientMessage(Component.translatable(rotationLocked ? "message.nekoroqualityoflife.rotation_locked"
+                    : "message.nekoroqualityoflife.rotation_unlocked"), true);
         }
         if (autoWalking) autoWalk(mc);
 
@@ -166,7 +166,7 @@ public final class QolClient {
                 }
             }
         }
-        player.displayClientMessage(Component.translatable("message.nekoro_qol.no_enchantment",
+        player.displayClientMessage(Component.translatable("message.nekoroqualityoflife.no_enchantment",
                 Component.translatable("enchantment." + enchantment.location().getNamespace() + "." + enchantment.location().getPath())), true);
     }
 

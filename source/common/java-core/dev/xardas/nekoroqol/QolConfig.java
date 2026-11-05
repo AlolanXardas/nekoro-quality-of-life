@@ -42,6 +42,7 @@ public final class QolConfig {
     public final boolean sortButton;
     public final boolean transferButtons;
     public final List<String> noButtonsIn;
+    public final List<String> noSortIn;
     public final boolean scrollMovesItems;
     public final boolean shiftDragMoves;
     public final boolean ctrlClickMovesSame;
@@ -81,7 +82,9 @@ public final class QolConfig {
         JsonObject inventory = JsonFile.obj(client, "inventory");
         sortButton = JsonFile.bool(inventory, "sort_button", true);
         transferButtons = JsonFile.bool(inventory, "transfer_buttons", true);
-        noButtonsIn = JsonFile.strings(inventory, "no_buttons_in");
+        noButtonsIn = inventory.has("no_buttons_in") ? JsonFile.strings(inventory, "no_buttons_in") : List.of("projecte");
+        noSortIn = inventory.has("no_sort_in") ? JsonFile.strings(inventory, "no_sort_in")
+                : List.of("sophisticatedbackpacks", "sophisticatedstorage");
         scrollMovesItems = JsonFile.bool(inventory, "scroll_moves_items", true);
         shiftDragMoves = JsonFile.bool(inventory, "shift_drag_moves", true);
         ctrlClickMovesSame = JsonFile.bool(inventory, "ctrl_click_moves_same", true);
@@ -197,8 +200,11 @@ public final class QolConfig {
                 // with a container open, buttons above it and above your inventory: move matching items here (only kinds
                 // that side already has) and move everything here. Items never come from or go into the hotbar.
                 "transfer_buttons": true,
-                // screens without buttons, by their Java class, e.g. "net.minecraft.client.gui.screens.inventory.ContainerScreen"
-                "no_buttons_in": [],
+                // screens without these buttons: a mod id, or a screen's Java class
+                // (e.g. "net.minecraft.client.gui.screens.inventory.ContainerScreen")
+                "no_buttons_in": [ "projecte" ],
+                // screens without the sort button (mods that sort their own storage)
+                "no_sort_in": [ "sophisticatedbackpacks", "sophisticatedstorage" ],
                 // the mouse wheel over an item moves one at a time: down into the other inventory, up back into this slot
                 "scroll_moves_items": true,
                 // hold Shift and the left button and move over items to move all of them to the other inventory

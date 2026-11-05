@@ -5,7 +5,7 @@ plugins {
 
 version = mod_version
 group = 'dev.xardas'
-base.archivesName = 'nekoro_qol'
+base.archivesName = 'nekoroqualityoflife'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 tasks.withType(JavaCompile).configureEach {
@@ -18,7 +18,7 @@ sourceSets.main {
 }
 
 loom {
-    accessWidenerPath = file('src/main/resources/nekoro_qol.accesswidener')
+    accessWidenerPath = file('src/main/resources/nekoroqualityoflife.accesswidener')
 }
 
 repositories {

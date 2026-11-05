@@ -2,8 +2,10 @@ package dev.xardas.nekoroqol.inventory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -33,7 +35,7 @@ public final class InventoryActions {
 
         List<Slot> group = switch (SlotGroups.part(anchor)) {
             case SlotGroups.MAIN -> SlotGroups.playerMain(menu);
-            case SlotGroups.OTHER -> SlotGroups.storage(menu, anchor.container);
+            case SlotGroups.OTHER -> wholeStorage(menu, anchor.container);
             default -> List.of();
         };
         group = group.stream().filter(s -> s.isActive() && s.mayPickup(player) && s.allowModification(player)).toList();
@@ -49,6 +51,19 @@ public final class InventoryActions {
             default -> { }
         }
         menu.broadcastChanges();
+    }
+
+    /**
+     * The slots of a storage. A window that shows only a part of something bigger (a bag that scrolls) can have a
+     * container that is also a Supplier of slots for all of it, so the buttons work on the whole storage.
+     */
+    @SuppressWarnings("unchecked")
+    private static List<Slot> wholeStorage(AbstractContainerMenu menu, Container container) {
+        if (container instanceof Supplier<?> supplier && supplier.get() instanceof List<?> list
+                && !list.isEmpty() && list.get(0) instanceof Slot) {
+            return (List<Slot>) list;
+        }
+        return SlotGroups.storage(menu, container);
     }
 
     /** Joins equal stacks, sorts them and puts them back from the first slot on. Changes nothing if they do not fit. */

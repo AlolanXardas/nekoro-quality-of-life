@@ -44,7 +44,7 @@ public final class CleanTooltips {
             for (Object2IntMap.Entry<Holder<Enchantment>> entry : off.entrySet()) {
                 Component name = Enchantment.getFullname(entry.getKey(), entry.getIntValue()).copy()
                         .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.STRIKETHROUGH);
-                disabled.add(Component.translatable("tooltip.nekoro_qol.disabled", name).withStyle(ChatFormatting.DARK_GRAY));
+                disabled.add(Component.translatable("tooltip.nekoroqualityoflife.disabled", name).withStyle(ChatFormatting.DARK_GRAY));
             }
         }
         if (!cfg.tooltipEnchantments) {
@@ -75,7 +75,7 @@ public final class CleanTooltips {
         for (int i = 0; i < disabled.size(); i++) {
             lines.add(last + 1 + i, Component.literal(" ").append(disabled.get(i)));
         }
-        lines.add(first, Component.translatable("tooltip.nekoro_qol.enchantments").withStyle(ChatFormatting.GRAY));
+        lines.add(first, Component.translatable("tooltip.nekoroqualityoflife.enchantments").withStyle(ChatFormatting.GRAY));
     }
 
     private static Component coloured(Holder<Enchantment> holder, int level, QolConfig cfg) {
@@ -99,7 +99,7 @@ public final class CleanTooltips {
         float share = max > 0 ? (float) left / max : 1;
         int rgb = Mth.hsvToRgb(share / 3F, 0.8F, 1F);
         Component value = Component.literal(left + " / " + max).withStyle(Style.EMPTY.withColor(rgb));
-        lines.add(Component.translatable("tooltip.nekoro_qol.durability", value).withStyle(ChatFormatting.GRAY));
+        lines.add(Component.translatable("tooltip.nekoroqualityoflife.durability", value).withStyle(ChatFormatting.GRAY));
     }
 
     private static void dyeColor(ItemStack stack, List<Component> lines) {
@@ -112,6 +112,6 @@ public final class CleanTooltips {
         if (at < 0) at = lines.indexOf(advanced);
         if (at < 0) return;
         Component swatch = Component.literal("■ ").withStyle(Style.EMPTY.withColor(dyed.rgb()));
-        lines.set(at, Component.translatable("tooltip.nekoro_qol.color", swatch.copy().append(hex)).withStyle(ChatFormatting.GRAY));
+        lines.set(at, Component.translatable("tooltip.nekoroqualityoflife.color", swatch.copy().append(hex)).withStyle(ChatFormatting.GRAY));
     }
 }
