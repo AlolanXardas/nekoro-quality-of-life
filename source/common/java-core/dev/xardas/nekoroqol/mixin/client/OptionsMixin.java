@@ -19,6 +19,15 @@ public abstract class OptionsMixin {
     @Shadow @Final @Mutable
     private OptionInstance<Double> gamma;
 
+    @Shadow
+    public boolean skipMultiplayerWarning;
+
+    /** Set after options.txt is read, so the warning stays off even if the file says otherwise. */
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void nekoroQol$skipMultiplayerWarning(CallbackInfo ci) {
+        if (QolConfig.get().skipMultiplayerWarning) skipMultiplayerWarning = true;
+    }
+
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Options;load()V"))
     private void nekoroQol$longerBrightness(CallbackInfo ci) {
         if (QolConfig.get().brightnessMax > 100) gamma = Brightness.option();

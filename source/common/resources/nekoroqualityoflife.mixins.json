@@ -15,7 +15,8 @@
     "client.KeyBindsScreenAccessor",
     "client.OptionsMixin",
     "client.ToastComponentMixin",
-    "client.WindowMixin"
+    "client.WindowMixin",
+    "client.WorldOpenFlowsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

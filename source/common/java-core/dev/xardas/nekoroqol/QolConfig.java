@@ -31,6 +31,9 @@ public final class QolConfig {
     public final boolean hideRecipeToasts;
     public final List<String> hiddenToastClasses;
     public final boolean hiddenToastsToChat;
+    public final boolean skipExperimentalWorld;
+    public final boolean hideChatWarning;
+    public final boolean skipMultiplayerWarning;
     public final boolean hideRecipeBook;
     public final boolean noCreativeDrift;
     public final boolean fasterLadders;
@@ -70,6 +73,10 @@ public final class QolConfig {
         hideRecipeToasts = JsonFile.bool(toasts, "hide_recipes", false);
         hiddenToastClasses = JsonFile.strings(toasts, "hide_classes");
         hiddenToastsToChat = JsonFile.bool(toasts, "send_hidden_to_chat", true);
+        JsonObject warnings = JsonFile.obj(client, "warnings");
+        skipExperimentalWorld = JsonFile.bool(warnings, "skip_experimental_world", false);
+        hideChatWarning = JsonFile.bool(warnings, "hide_chat_warning", false);
+        skipMultiplayerWarning = JsonFile.bool(warnings, "skip_multiplayer_warning", false);
         hideRecipeBook = JsonFile.bool(client, "hide_recipe_book", false);
         noCreativeDrift = JsonFile.bool(client, "no_creative_drift", true);
         fasterLadders = JsonFile.bool(client, "faster_ladders", true);
@@ -170,6 +177,15 @@ public final class QolConfig {
                 "hide_classes": [],
                 // show the text of popups from "hide_classes" in chat instead (each text at most once every 5 minutes)
                 "send_hidden_to_chat": true
+              },
+              "warnings": {
+                // no "Experimental Settings" question when creating a world with mod dimensions or world settings, and no
+                // backup question when opening such a world. The backup question for very old customized worlds stays.
+                "skip_experimental_world": false,
+                // no "Chat messages can't be verified" popup when joining a server
+                "hide_chat_warning": false,
+                // no warning screen before the multiplayer menu
+                "skip_multiplayer_warning": false
               },
               // hides the green recipe book button; recipes are in JEI or similar mods.
               // Also skips building the recipe book at login, which saves time in big modpacks.

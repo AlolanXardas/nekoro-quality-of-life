@@ -12,6 +12,15 @@
     // show the text of popups from "hide_classes" in chat instead (each text at most once every 5 minutes)
     "send_hidden_to_chat": true
   },
+  "warnings": {
+    // no "Experimental Settings" question when creating a world with mod dimensions or world settings, and no
+    // backup question when opening such a world. The backup question for very old customized worlds stays.
+    "skip_experimental_world": true,
+    // no "Chat messages can't be verified" popup when joining a server
+    "hide_chat_warning": true,
+    // no warning screen before the multiplayer menu
+    "skip_multiplayer_warning": true
+  },
   // hides the green recipe book button; recipes are in JEI or similar mods.
   // Also skips building the recipe book at login, which saves time in big modpacks.
   "hide_recipe_book": true,

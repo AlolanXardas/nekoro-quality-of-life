@@ -10,6 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.toasts.AdvancementToast;
 import net.minecraft.client.gui.components.toasts.RecipeToast;
+import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.gui.components.toasts.TutorialToast;
 import net.minecraft.network.chat.Component;
@@ -30,6 +31,8 @@ public final class ToastFilter {
         if (cfg.hideTutorials && toast instanceof TutorialToast) return true;
         if (cfg.hideAdvancements && toast instanceof AdvancementToast) return true;
         if (cfg.hideRecipeToasts && toast instanceof RecipeToast) return true;
+        if (cfg.hideChatWarning && toast instanceof SystemToast system
+                && system.getToken() == SystemToast.SystemToastId.UNSECURE_SERVER_WARNING) return true;
         if (!cfg.hiddenToastClasses.isEmpty() && matches(cfg.hiddenToastClasses, toast.getClass())) {
             if (cfg.hiddenToastsToChat) sendToChat(toast);
             return true;
