@@ -29,7 +29,7 @@ cd source
 .uild-all.ps1
 ```
 
-The jars are copied to `Gotowe/<version>`. Java 21 is needed.
+The jars are copied to `release/<version>`. Java 21 is needed.
 
 ## License
 
