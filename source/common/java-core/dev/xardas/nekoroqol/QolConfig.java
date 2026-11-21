@@ -59,7 +59,7 @@ public final class QolConfig {
 
     private QolConfig(JsonObject common, JsonObject client) {
         toggleEnchantments = JsonFile.bool(common, "toggle_enchantments", true);
-        unlockAllRecipes = JsonFile.bool(common, "unlock_all_recipes", false);
+        unlockAllRecipes = JsonFile.bool(common, "unlock_all_recipes", true);
         doubleDoors = JsonFile.bool(common, "double_doors", true);
         instantXp = JsonFile.bool(common, "instant_xp", true);
         mergeXpOrbs = JsonFile.bool(common, "merge_xp_orbs", true);
@@ -68,16 +68,16 @@ public final class QolConfig {
         sortCategories = categories(JsonFile.strings(common, "sort_categories"));
 
         JsonObject toasts = JsonFile.obj(client, "toasts");
-        hideTutorials = JsonFile.bool(toasts, "hide_tutorials", false);
-        hideAdvancements = JsonFile.bool(toasts, "hide_advancements", false);
-        hideRecipeToasts = JsonFile.bool(toasts, "hide_recipes", false);
+        hideTutorials = JsonFile.bool(toasts, "hide_tutorials", true);
+        hideAdvancements = JsonFile.bool(toasts, "hide_advancements", true);
+        hideRecipeToasts = JsonFile.bool(toasts, "hide_recipes", true);
         hiddenToastClasses = JsonFile.strings(toasts, "hide_classes");
         hiddenToastsToChat = JsonFile.bool(toasts, "send_hidden_to_chat", true);
         JsonObject warnings = JsonFile.obj(client, "warnings");
-        skipExperimentalWorld = JsonFile.bool(warnings, "skip_experimental_world", false);
-        hideChatWarning = JsonFile.bool(warnings, "hide_chat_warning", false);
-        skipMultiplayerWarning = JsonFile.bool(warnings, "skip_multiplayer_warning", false);
-        hideRecipeBook = JsonFile.bool(client, "hide_recipe_book", false);
+        skipExperimentalWorld = JsonFile.bool(warnings, "skip_experimental_world", true);
+        hideChatWarning = JsonFile.bool(warnings, "hide_chat_warning", true);
+        skipMultiplayerWarning = JsonFile.bool(warnings, "skip_multiplayer_warning", true);
+        hideRecipeBook = JsonFile.bool(client, "hide_recipe_book", true);
         noCreativeDrift = JsonFile.bool(client, "no_creative_drift", true);
         fasterLadders = JsonFile.bool(client, "faster_ladders", true);
         ladderSpeed = Math.max(0.15, Math.min(1.0, JsonFile.number(client, "ladder_speed", 0.3)));
@@ -143,7 +143,7 @@ public final class QolConfig {
               // can be on one tool. Curses can never be switched off.
               "toggle_enchantments": true,
               // every player knows every recipe (the recipe book shows all of them, no "new recipe" toasts needed)
-              "unlock_all_recipes": false,
+              "unlock_all_recipes": true,
               // opening one door of a double door opens the other one too (sneak to open only one)
               "double_doors": true,
               // XP orbs are picked up at once instead of one by one, with Mending working as usual
@@ -168,11 +168,11 @@ public final class QolConfig {
             {
               "toasts": {
                 // the tutorial hints at the start (how to move, punch trees, open the inventory...)
-                "hide_tutorials": false,
+                "hide_tutorials": true,
                 // "Advancement Made!" popups (advancements still show in chat)
-                "hide_advancements": false,
+                "hide_advancements": true,
                 // "New Recipes Unlocked!" popups
-                "hide_recipes": false,
+                "hide_recipes": true,
                 // other popups by their Java class, e.g. "com.cobblemon.mod.common.client.gui.toast.CobblemonToast"
                 "hide_classes": [],
                 // show the text of popups from "hide_classes" in chat instead (each text at most once every 5 minutes)
@@ -181,15 +181,15 @@ public final class QolConfig {
               "warnings": {
                 // no "Experimental Settings" question when creating a world with mod dimensions or world settings, and no
                 // backup question when opening such a world. The backup question for very old customized worlds stays.
-                "skip_experimental_world": false,
+                "skip_experimental_world": true,
                 // no "Chat messages can't be verified" popup when joining a server
-                "hide_chat_warning": false,
+                "hide_chat_warning": true,
                 // no warning screen before the multiplayer menu
-                "skip_multiplayer_warning": false
+                "skip_multiplayer_warning": true
               },
               // hides the green recipe book button; recipes are in JEI or similar mods.
               // Also skips building the recipe book at login, which saves time in big modpacks.
-              "hide_recipe_book": false,
+              "hide_recipe_book": true,
               // stop at once when you let go of the movement keys while flying in creative
               "no_creative_drift": true,
               // climb down ladders and vines faster while looking down (sneak to stop as usual)
